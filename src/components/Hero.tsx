@@ -56,7 +56,7 @@ export default function Hero() {
         />
       </motion.div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 overflow-hidden">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <motion.div variants={fadeInUp} initial="hidden" animate="visible">
             <motion.div
@@ -128,24 +128,24 @@ export default function Hero() {
             </motion.div>
 
             <motion.div
-              className="mt-8 flex items-center gap-6"
+              className="mt-8 flex flex-wrap items-center gap-4 sm:gap-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, ease: entranceEasing, delay: 0.5 }}
             >
               <motion.div className="text-center cursor-pointer" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
-                <div className="text-3xl font-bold text-white">2010</div>
-                <div className="text-white/50 text-sm">Founded</div>
+                <div className="text-2xl sm:text-3xl font-bold text-white">2010</div>
+                <div className="text-white/50 text-xs sm:text-sm">Founded</div>
               </motion.div>
               <div className="w-px h-10 bg-white/15" />
               <motion.div className="text-center cursor-pointer" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
-                <div className="text-3xl font-bold text-white">19L</div>
-                <div className="text-white/50 text-sm">Premium Size</div>
+                <div className="text-2xl sm:text-3xl font-bold text-white">19L</div>
+                <div className="text-white/50 text-xs sm:text-sm">Premium Size</div>
               </motion.div>
               <div className="w-px h-10 bg-white/15" />
               <motion.div className="text-center cursor-pointer" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
-                <div className="text-3xl font-bold text-white">SLS</div>
-                <div className="text-white/50 text-sm">Certified</div>
+                <div className="text-2xl sm:text-3xl font-bold text-white">SLS</div>
+                <div className="text-white/50 text-xs sm:text-sm">Certified</div>
               </motion.div>
             </motion.div>
           </motion.div>
