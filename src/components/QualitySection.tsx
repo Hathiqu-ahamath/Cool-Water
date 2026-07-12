@@ -119,25 +119,25 @@ export default function QualitySection() {
               From source to bottle, every step of our process is monitored and controlled. We maintain strict hygiene standards at our production facility and conduct regular quality audits to ensure your safety.
             </p>
             <motion.div
-              className="mt-8 flex flex-wrap justify-center gap-8 text-center"
+              className="mt-8 flex flex-nowrap justify-center gap-4 sm:gap-8 text-center"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
-              <motion.div className="text-center" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
-                <div className="text-3xl font-bold text-white">8+</div>
-                <div className="text-white/60 text-sm mt-1">Quality Checks</div>
+              <motion.div className="text-center shrink-0" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
+                <div className="text-2xl sm:text-3xl font-bold text-white">8+</div>
+                <div className="text-white/60 text-xs sm:text-sm mt-1">Quality Checks</div>
               </motion.div>
-              <div className="w-px h-10 bg-white/20" />
-              <motion.div className="text-center" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
-                <div className="text-3xl font-bold text-white">100%</div>
-                <div className="text-white/60 text-sm mt-1">Lab Tested</div>
+              <div className="w-px h-10 bg-white/20 shrink-0" />
+              <motion.div className="text-center shrink-0" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
+                <div className="text-2xl sm:text-3xl font-bold text-white">100%</div>
+                <div className="text-white/60 text-xs sm:text-sm mt-1">Lab Tested</div>
               </motion.div>
-              <div className="w-px h-10 bg-white/20" />
-              <motion.div className="text-center" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
-                <div className="text-3xl font-bold text-white">15+</div>
-                <div className="text-white/60 text-sm mt-1">Years Experience</div>
+              <div className="w-px h-10 bg-white/20 shrink-0" />
+              <motion.div className="text-center shrink-0" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
+                <div className="text-2xl sm:text-3xl font-bold text-white">15+</div>
+                <div className="text-white/60 text-xs sm:text-sm mt-1">Years Experience</div>
               </motion.div>
             </motion.div>
           </div>
