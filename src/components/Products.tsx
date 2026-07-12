@@ -122,13 +122,13 @@ export default function Products() {
             </p>
           </motion.div>
 
-          <div className="md:hidden space-y-4">
-            <div className="relative overflow-hidden marquee-wrapper">
-              <div className="flex gap-4 items-center w-max">
-                {doubledProducts.map((product, index) => (
-                  <ProductCard key={`${product.id}-${index}`} product={product} onOrder={handleOrderClick} />
-                ))}
-              </div>
+          <div className="md:hidden">
+            <div className="touch-scroll flex gap-4 px-4 -mx-4 pb-2">
+              {doubledProducts.map((product, index) => (
+                <div key={`${product.id}-${index}`}>
+                  <ProductCard product={product} onOrder={handleOrderClick} />
+                </div>
+              ))}
             </div>
           </div>
 

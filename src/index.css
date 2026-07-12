@@ -73,23 +73,18 @@ body {
   animation-play-state: paused;
 }
 
-@media (hover: none) and (pointer: coarse) {
-  .marquee-wrapper {
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  .marquee-wrapper::-webkit-scrollbar {
-    display: none;
-  }
-
-  .marquee-card {
-    scroll-snap-align: start;
-    flex-shrink: 0;
-  }
+.touch-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: auto;
 }
 
+.touch-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.touch-scroll > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}

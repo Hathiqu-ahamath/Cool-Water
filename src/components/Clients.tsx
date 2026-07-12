@@ -39,7 +39,7 @@ function LogoRow({ items, className }: { items: typeof clients; className: strin
   }
 
   return (
-    <div ref={wrapperRef} className="relative overflow-hidden marquee-wrapper" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+    <div ref={wrapperRef} className="relative overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
       <div ref={innerRef} className={`flex gap-6 items-center w-max ${className}`}>
         {items.map((client, index) => (
           <div

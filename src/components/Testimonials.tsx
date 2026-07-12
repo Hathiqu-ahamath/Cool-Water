@@ -101,7 +101,7 @@ export default function Testimonials() {
         </motion.div>
 
         <div className="md:hidden">
-          <div ref={wrapperRef} className="marquee-wrapper overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+          <div ref={wrapperRef} className="overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
             <div ref={innerRef} className="flex gap-6 items-stretch w-max animate-marquee-left">
               {doubledTestimonials.map((testimonial, index) => (
                 <TestimonialCard key={`${testimonial.id}-${index}`} testimonial={testimonial} />
