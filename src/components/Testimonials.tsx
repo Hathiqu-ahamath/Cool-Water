@@ -1,3 +1,4 @@
+import { useRef } from "react"
 import { motion } from "framer-motion"
 import { Star, Quote } from "lucide-react"
 import { sectionHeading, staggerContainer, staggerItem } from "../lib/motionVariants"
@@ -52,6 +53,20 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[num
 }
 
 export default function Testimonials() {
+  const innerRef = useRef<HTMLDivElement>(null)
+
+  const handleTouchStart = () => {
+    if (innerRef.current) innerRef.current.style.animationPlayState = "paused"
+  }
+
+  const handleTouchEnd = () => {
+    if (innerRef.current) {
+      setTimeout(() => {
+        if (innerRef.current) innerRef.current.style.animationPlayState = "running"
+      }, 1000)
+    }
+  }
+
   return (
     <section className="py-16 lg:py-20 bg-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -70,8 +85,8 @@ export default function Testimonials() {
         </motion.div>
 
         <div className="md:hidden">
-          <div className="marquee-wrapper overflow-hidden">
-            <div className="flex gap-6 items-stretch w-max animate-marquee-left">
+          <div className="marquee-wrapper overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+            <div ref={innerRef} className="flex gap-6 items-stretch w-max animate-marquee-left">
               {doubledTestimonials.map((testimonial, index) => (
                 <TestimonialCard key={`${testimonial.id}-${index}`} testimonial={testimonial} />
               ))}

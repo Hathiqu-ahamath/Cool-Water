@@ -1,3 +1,4 @@
+import { useRef } from "react"
 import { motion } from "framer-motion"
 import { ArrowUpRight } from "lucide-react"
 import { Link } from "react-router-dom"
@@ -7,9 +8,23 @@ import { sectionHeading } from "../lib/motionVariants"
 const doubledClients = [...clients, ...clients]
 
 function LogoRow({ items, className }: { items: typeof clients; className: string }) {
+  const innerRef = useRef<HTMLDivElement>(null)
+
+  const handleTouchStart = () => {
+    if (innerRef.current) innerRef.current.style.animationPlayState = "paused"
+  }
+
+  const handleTouchEnd = () => {
+    if (innerRef.current) {
+      setTimeout(() => {
+        if (innerRef.current) innerRef.current.style.animationPlayState = "running"
+      }, 1000)
+    }
+  }
+
   return (
-    <div className="relative overflow-hidden marquee-wrapper">
-      <div className={`flex gap-6 items-center w-max ${className}`}>
+    <div className="relative overflow-hidden marquee-wrapper" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+      <div ref={innerRef} className={`flex gap-6 items-center w-max ${className}`}>
         {items.map((client, index) => (
           <div
             key={`${client.id}-${index}`}
