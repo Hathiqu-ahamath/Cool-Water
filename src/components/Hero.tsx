@@ -11,7 +11,7 @@ function Hero() {
         <img
           src="/assets/hero.webp"
           alt="Pure water flowing over smooth river stones"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover blur-sm scale-105"
           loading="eager"
           fetchPriority="high"
           width="1920"

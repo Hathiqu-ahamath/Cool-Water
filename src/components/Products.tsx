@@ -145,7 +145,7 @@ export default function Products() {
                 variants={staggerItem}
                 whileHover={{ y: -8, boxShadow: "0 24px 48px rgba(30,111,159,0.15), 0 0 0 1px rgba(30,111,159,0.1)" }}
                 transition={{ duration: 0.35, ease: [0.2, 0, 0, 1] }}
-                className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm cursor-pointer"
+                className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm cursor-pointer flex flex-col"
               >
                 <div className={`bg-gradient-to-br ${product.gradient} p-6 flex items-center justify-center relative overflow-hidden h-56`}>
                   <div className="absolute inset-0 bg-white/5" />
@@ -168,7 +168,7 @@ export default function Products() {
                   </motion.div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-grow">
                   <h3 className="text-lg font-bold text-gray-900 mb-2">{product.title}</h3>
                   <p className="text-sm text-gray-600 mb-4 leading-relaxed">{product.description}</p>
                   <ul className="space-y-2 mb-6">
@@ -181,7 +181,7 @@ export default function Products() {
                   </ul>
                   <motion.button
                     onClick={() => handleOrderClick(product.size)}
-                    className="flex items-center justify-center gap-2 w-full bg-brand-50 hover:bg-brand-500 text-brand-600 hover:text-white px-4 py-3 rounded-xl text-sm font-semibold transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+                    className="mt-auto flex items-center justify-center gap-2 w-full bg-brand-50 hover:bg-brand-500 text-brand-600 hover:text-white px-4 py-3 rounded-xl text-sm font-semibold transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
                     variants={buttonHover}
                     initial="initial"
                     whileHover="whileHover"
