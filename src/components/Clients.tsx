@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react"
+import { useRef } from "react"
 import { motion } from "framer-motion"
 import { ArrowUpRight } from "lucide-react"
 import { Link } from "react-router-dom"
@@ -9,22 +9,6 @@ const doubledClients = [...clients, ...clients]
 
 function LogoRow({ items, className }: { items: typeof clients; className: string }) {
   const innerRef = useRef<HTMLDivElement>(null)
-  const wrapperRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const wrapper = wrapperRef.current
-    const inner = innerRef.current
-    if (!wrapper || !inner) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        inner.style.animationPlayState = entry.isIntersecting ? "running" : "paused"
-      },
-      { threshold: 0 },
-    )
-    observer.observe(wrapper)
-    return () => observer.disconnect()
-  }, [])
 
   const handleTouchStart = () => {
     if (innerRef.current) innerRef.current.style.animationPlayState = "paused"
@@ -39,7 +23,7 @@ function LogoRow({ items, className }: { items: typeof clients; className: strin
   }
 
   return (
-    <div ref={wrapperRef} className="relative overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+    <div className="relative overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
       <div ref={innerRef} className={`flex gap-6 items-center w-max ${className}`}>
         {items.map((client, index) => (
           <div
