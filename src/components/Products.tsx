@@ -47,8 +47,6 @@ const products = [
   },
 ]
 
-const doubledProducts = [...products, ...products]
-
 function ProductCard({ product, onOrder }: { product: typeof products[number]; onOrder: (size: string) => void }) {
   return (
     <div className="marquee-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm shrink-0 w-[220px] sm:w-[240px]">
@@ -124,8 +122,8 @@ export default function Products() {
 
           <div className="md:hidden">
             <div className="touch-scroll flex gap-4 px-4 -mx-4 pb-2">
-              {doubledProducts.map((product, index) => (
-                <div key={`${product.id}-${index}`}>
+              {products.map((product) => (
+                <div key={product.id}>
                   <ProductCard product={product} onOrder={handleOrderClick} />
                 </div>
               ))}

@@ -25,7 +25,7 @@ function Hero() {
         <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-brand-400/10 blur-3xl animate-pulse" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 lg:py-20 overflow-hidden">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8 sm:pt-28 lg:py-20 overflow-hidden">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
           <motion.div variants={fadeInUp} initial="hidden" animate="visible">
             <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-extrabold text-white leading-tight tracking-tight">
@@ -37,7 +37,7 @@ function Hero() {
             </h1>
 
             <motion.p
-              className="mt-4 text-base sm:text-lg text-white/70 max-w-xl leading-relaxed"
+              className="mt-3 sm:mt-4 text-base sm:text-lg text-white/70 max-w-xl leading-relaxed"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, ease: entranceEasing, delay: 0.3 }}
@@ -46,7 +46,7 @@ function Hero() {
             </motion.p>
 
             <motion.div
-              className="mt-6 flex flex-nowrap justify-center gap-3"
+              className="mt-4 sm:mt-6 flex flex-nowrap justify-center gap-3"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: entranceEasing, delay: 0.4 }}
@@ -78,7 +78,7 @@ function Hero() {
             </motion.div>
 
             <motion.div
-              className="mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-6"
+              className="mt-5 sm:mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, ease: entranceEasing, delay: 0.5 }}
@@ -106,7 +106,7 @@ function Hero() {
             animate="visible"
             className="relative flex items-center justify-center"
           >
-            <div className="relative w-56 h-72 sm:w-64 sm:h-80 lg:w-80 lg:h-96">
+            <div className="relative w-32 h-40 sm:w-64 sm:h-80 lg:w-80 lg:h-96">
               <div className="absolute inset-0 rounded-[2rem] overflow-hidden shadow-2xl shadow-brand-900/30">
                 <img
                   src="/assets/hero.webp"
@@ -118,11 +118,11 @@ function Hero() {
                   height="384"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-900/40 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-0 right-0 text-center">
-                  <span className="inline-block bg-white/15 backdrop-blur-md px-4 py-2 rounded-full text-white text-sm font-semibold border border-white/10">
-                    Pure Water. Trusted Quality.
-                  </span>
-                </div>
+              </div>
+              <div className="absolute bottom-0 sm:bottom-4 left-1/2 -translate-x-1/2 w-max max-w-[120%]">
+                <span className="inline-block bg-white/15 backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-white text-[10px] sm:text-sm font-semibold border border-white/10 whitespace-nowrap shadow-lg">
+                  Pure Water. Trusted Quality.
+                </span>
               </div>
 
               <div className="absolute -top-6 -right-6 w-16 h-16 animate-float-slow" aria-hidden="true">
