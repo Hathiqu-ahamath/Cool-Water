@@ -47,3 +47,54 @@ body {
   background-color: var(--color-brand-500);
   color: white;
 }
+
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 70s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 70s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+  animation-play-state: paused;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .marquee-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .marquee-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .marquee-wrapper .animate-marquee-left,
+  .marquee-wrapper .animate-marquee-right {
+    animation-play-state: paused;
+  }
+
+  .marquee-card {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+}
+

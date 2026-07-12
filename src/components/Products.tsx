@@ -6,6 +6,7 @@ import OrderModal from "./OrderModal"
 
 const products = [
   {
+    id: "19l",
     size: "19L",
     title: "19L Water Bottle",
     description: "Our flagship product. The perfect solution for homes and offices. Fits standard water dispensers.",
@@ -15,6 +16,7 @@ const products = [
     image: "/assets/19L.png",
   },
   {
+    id: "5l",
     size: "5L",
     title: "5L Water Bottle",
     description: "Convenient medium-size bottle ideal for smaller households and office use.",
@@ -24,6 +26,7 @@ const products = [
     image: "/assets/5L.png",
   },
   {
+    id: "1-5l",
     size: "1.5L",
     title: "1.5L Water Bottle",
     description: "Perfect personal size for hydration on the go. Great for school, work, and travel.",
@@ -33,6 +36,7 @@ const products = [
     image: "/assets/1.5L.png",
   },
   {
+    id: "1l",
     size: "1L",
     title: "1L Water Bottle",
     description: "Compact and lightweight. Ideal for individual daily hydration needs.",
@@ -42,6 +46,51 @@ const products = [
     image: "/assets/1L.png",
   },
 ]
+
+const doubledProducts = [...products, ...products]
+
+function ProductCard({ product, onOrder }: { product: typeof products[number]; onOrder: (size: string) => void }) {
+  return (
+    <div className="marquee-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm shrink-0 w-[220px] sm:w-[240px]">
+      <div className={`bg-gradient-to-br ${product.gradient} p-4 flex items-center justify-center relative overflow-hidden h-40`}>
+        <div className="absolute inset-0 bg-white/5" />
+        <div className="relative z-10 w-full h-full flex items-center justify-center">
+          <img
+            src={product.image}
+            alt={product.title}
+            className="w-full h-full object-contain drop-shadow-xl"
+            loading="lazy"
+            width="240"
+            height="240"
+            onError={(e) => {
+              e.currentTarget.style.display = "none"
+            }}
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+      </div>
+      <div className="p-4">
+        <h3 className="text-base font-bold text-gray-900 mb-1">{product.title}</h3>
+        <p className="text-xs text-gray-600 mb-3 leading-relaxed line-clamp-2">{product.description}</p>
+        <ul className="space-y-1 mb-4">
+          {product.features.map((feature) => (
+            <li key={feature} className="flex items-center gap-1.5 text-xs text-gray-500">
+              <div className="w-1 h-1 rounded-full bg-brand-500" />
+              {feature}
+            </li>
+          ))}
+        </ul>
+        <button
+          onClick={() => onOrder(product.size)}
+          className="flex items-center justify-center gap-2 w-full bg-brand-50 hover:bg-brand-500 text-brand-600 hover:text-white px-3 py-2.5 rounded-xl text-xs font-semibold transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+        >
+          <ShoppingCart className="w-3.5 h-3.5" />
+          Order {product.size}
+        </button>
+      </div>
+    </div>
+  )
+}
 
 export default function Products() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -54,7 +103,7 @@ export default function Products() {
 
   return (
     <>
-      <section id="products" className="py-16 lg:py-20 bg-surface">
+      <section id="products" className="py-16 lg:py-20 bg-surface overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={sectionHeading}
@@ -73,20 +122,30 @@ export default function Products() {
             </p>
           </motion.div>
 
+          <div className="md:hidden space-y-4">
+            <div className="relative overflow-hidden marquee-wrapper">
+              <div className="flex gap-4 items-center w-max">
+                {doubledProducts.map((product, index) => (
+                  <ProductCard key={`${product.id}-${index}`} product={product} onOrder={handleOrderClick} />
+                ))}
+              </div>
+            </div>
+          </div>
+
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
+            className="hidden md:grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
           >
             {products.map((product) => (
               <motion.div
-                key={product.size}
+                key={product.id}
                 variants={staggerItem}
-                className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm cursor-pointer"
                 whileHover={{ y: -8, boxShadow: "0 24px 48px rgba(30,111,159,0.15), 0 0 0 1px rgba(30,111,159,0.1)" }}
                 transition={{ duration: 0.35, ease: [0.2, 0, 0, 1] }}
+                className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm cursor-pointer"
               >
                 <div className={`bg-gradient-to-br ${product.gradient} p-6 flex items-center justify-center relative overflow-hidden h-56`}>
                   <div className="absolute inset-0 bg-white/5" />
@@ -100,6 +159,11 @@ export default function Products() {
                       alt={product.title}
                       className="w-full h-full object-contain drop-shadow-xl"
                       loading="lazy"
+                      width="240"
+                      height="240"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none"
+                      }}
                     />
                   </motion.div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />

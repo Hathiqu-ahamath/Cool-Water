@@ -1,10 +1,14 @@
+import { useEffect } from "react"
 import { motion } from "framer-motion"
-import { ArrowLeft, Building2, ExternalLink } from "lucide-react"
+import { ArrowLeft, Building2 } from "lucide-react"
 import { Link } from "react-router-dom"
 import { clients } from "../lib/clientsData"
-import { staggerContainer, staggerItem, buttonHover } from "../lib/motionVariants"
+import { staggerContainer, staggerItem } from "../lib/motionVariants"
 
 export default function ClientsPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <div className="min-h-screen bg-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20">
@@ -14,7 +18,7 @@ export default function ClientsPage() {
           transition={{ duration: 0.5, ease: [0.2, 0, 0, 1] }}
         >
           <Link
-            to="/"
+            to="/#clients"
             className="inline-flex items-center gap-2 text-brand-600 hover:text-brand-700 font-semibold text-sm mb-8 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -43,9 +47,9 @@ export default function ClientsPage() {
             <motion.div
               key={client.id}
               variants={staggerItem}
-              className="group bg-white rounded-2xl p-8 border border-gray-100 shadow-sm cursor-pointer"
-              whileHover={{ y: -6, boxShadow: "0 24px 48px rgba(30,111,159,0.1)" }}
+              whileHover={{ y: -6, boxShadow: "0 24px 48px rgba(30,111,159,0.1), 0 0 0 1px rgba(30,111,159,0.08)" }}
               transition={{ duration: 0.3, ease: [0.2, 0, 0, 1] }}
+              className="group bg-white rounded-2xl p-8 border border-gray-100 shadow-sm"
             >
               <div className="flex items-center gap-4 mb-5">
                 <img src={client.logo} alt={client.name} className="w-16 h-16 object-contain rounded" />
@@ -58,15 +62,6 @@ export default function ClientsPage() {
                 </div>
               </div>
               <p className="text-gray-600 leading-relaxed text-sm">{client.description}</p>
-              <motion.div
-                className="mt-5 flex items-center gap-1.5 text-brand-600 text-sm font-semibold"
-                variants={buttonHover}
-                whileHover="whileHover"
-                whileTap="whileTap"
-              >
-                <ExternalLink className="w-4 h-4" />
-                Learn More
-              </motion.div>
             </motion.div>
           ))}
         </motion.div>

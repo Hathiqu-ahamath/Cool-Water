@@ -79,7 +79,7 @@ export default function Features() {
             <motion.div
               key={feature.title}
               variants={staggerItem}
-              className="group bg-white rounded-2xl p-8 border border-gray-100 shadow-sm cursor-pointer"
+              className="group bg-white rounded-2xl p-8 border border-gray-100 shadow-sm"
               whileHover={{ y: -4, boxShadow: "0 20px 40px rgba(0,0,0,0.08)" }}
               transition={{ duration: 0.25, ease: [0.2, 0, 0, 1] }}
             >

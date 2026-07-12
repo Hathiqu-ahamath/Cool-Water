@@ -72,7 +72,7 @@ export default function QualitySection() {
             <motion.div
               key={item.title}
               variants={staggerItem}
-              className="group bg-white rounded-2xl p-8 border border-gray-100 shadow-sm cursor-pointer"
+              className="group bg-white rounded-2xl p-8 border border-gray-100 shadow-sm"
               whileHover={{ y: -4, boxShadow: "0 20px 40px rgba(0,0,0,0.08)" }}
               transition={{ duration: 0.25, ease: [0.2, 0, 0, 1] }}
             >
@@ -104,9 +104,10 @@ export default function QualitySection() {
           <div className="absolute inset-0">
             <img
               src="https://coolwater.lk/wp-content/uploads/2022/12/profile_2.jpg"
-              alt=""
+              alt="Cool Water quality testing laboratory"
               className="w-full h-full object-cover"
               loading="lazy"
+              onError={(e) => { e.currentTarget.style.display = "none" }}
             />
             <div className="absolute inset-0 bg-gradient-to-r from-brand-800/95 via-brand-700/90 to-brand-600/85" />
           </div>
@@ -124,17 +125,17 @@ export default function QualitySection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
-              <motion.div className="cursor-pointer" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
+              <motion.div className="text-center" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
                 <div className="text-3xl font-bold text-white">8+</div>
                 <div className="text-white/60 text-sm mt-1">Quality Checks</div>
               </motion.div>
               <div className="w-px h-10 bg-white/20" />
-              <motion.div className="cursor-pointer" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
+              <motion.div className="text-center" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
                 <div className="text-3xl font-bold text-white">100%</div>
                 <div className="text-white/60 text-sm mt-1">Lab Tested</div>
               </motion.div>
               <div className="w-px h-10 bg-white/20" />
-              <motion.div className="cursor-pointer" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
+              <motion.div className="text-center" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
                 <div className="text-3xl font-bold text-white">15+</div>
                 <div className="text-white/60 text-sm mt-1">Years Experience</div>
               </motion.div>

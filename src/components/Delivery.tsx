@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 import { Home, Building2, PackageCheck, CalendarCheck } from "lucide-react"
 import { sectionHeading, staggerContainer, staggerItem, iconHover, buttonHover, scaleFadeIn } from "../lib/motionVariants"
+import { WHATSAPP_PHONE, WHATSAPP_ORDER_MESSAGE } from "../lib/constants"
 
 const services = [
   {
@@ -65,7 +66,7 @@ export default function Delivery() {
             <motion.div
               key={service.title}
               variants={staggerItem}
-              className="group bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex gap-5 cursor-pointer"
+              className="group bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex gap-5"
               whileHover={{ y: -4, boxShadow: "0 20px 40px rgba(30,111,159,0.08)" }}
               transition={{ duration: 0.3, ease: [0.2, 0, 0, 1] }}
             >
@@ -95,9 +96,10 @@ export default function Delivery() {
           <div className="absolute inset-0">
             <img
               src="https://coolwater.lk/wp-content/uploads/2022/12/19L.jpg"
-              alt=""
+              alt="Cool Water 19L delivery bottles"
               className="w-full h-full object-cover"
               loading="lazy"
+              onError={(e) => { e.currentTarget.style.display = "none" }}
             />
             <div className="absolute inset-0 bg-gradient-to-r from-brand-50/95 via-white/92 to-brand-50/95" />
           </div>
@@ -109,7 +111,7 @@ export default function Delivery() {
               Contact us today to set up your delivery schedule. We serve customers across Sri Lanka.
             </p>
             <motion.a
-              href="https://wa.me/94752871414?text=Hello%2C%20I%20would%20like%20to%20place%20an%20order."
+              href={`https://wa.me/${WHATSAPP_PHONE}?text=${WHATSAPP_ORDER_MESSAGE}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-8 py-4 rounded-full text-base font-bold shadow-lg shadow-brand-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"

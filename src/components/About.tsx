@@ -35,9 +35,10 @@ export default function About() {
       >
         <img
           src="https://coolwater.lk/wp-content/uploads/2022/12/profile_1.jpg"
-          alt=""
+          alt="Cool Water production facility"
           className="w-full h-full object-cover"
           loading="lazy"
+          onError={(e) => { e.currentTarget.style.display = "none" }}
         />
         <div className="absolute inset-0 bg-gradient-to-l from-white via-white to-transparent" />
       </motion.div>

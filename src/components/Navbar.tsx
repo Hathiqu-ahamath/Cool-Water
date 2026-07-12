@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Phone } from "lucide-react"
+import { WHATSAPP_PHONE, WHATSAPP_ORDER_MESSAGE } from "../lib/constants"
 
 const navLinks = [
   { href: "#home", label: "Home" },
@@ -22,10 +23,47 @@ export default function Navbar() {
   const isHome = pathname === "/"
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener("scroll", handleScroll)
+    let ticking = false
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20)
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [pathname])
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) setMenuOpen(false)
+    }
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false)
+    },
+    [],
+  )
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.addEventListener("keydown", handleKeyDown)
+    }
+    return () => document.removeEventListener("keydown", handleKeyDown)
+  }, [menuOpen, handleKeyDown])
+
+  const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${WHATSAPP_ORDER_MESSAGE}`
 
   return (
     <nav
@@ -44,22 +82,27 @@ export default function Navbar() {
           </Link>
 
           <div className="hidden lg:flex items-center gap-8">
-            {isHome && navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className={`text-sm font-medium tracking-wide transition-colors duration-200 hover:text-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 rounded ${
-                  scrolled || !isHome ? "text-gray-700 focus-visible:ring-offset-white" : "text-white/90 focus-visible:ring-offset-brand-800"
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
+            {isHome &&
+              navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={`text-sm font-medium tracking-wide transition-colors duration-200 hover:text-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 rounded ${
+                    scrolled || !isHome
+                      ? "text-gray-700 focus-visible:ring-offset-white"
+                      : "text-white/90 focus-visible:ring-offset-brand-800"
+                  }`}
+                >
+                  {link.label}
+                </a>
+              ))}
             {!isHome && (
               <Link
                 to="/"
                 className={`text-sm font-medium tracking-wide transition-colors duration-200 hover:text-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 rounded ${
-                  scrolled || !isHome ? "text-gray-700 focus-visible:ring-offset-white" : "text-white/90 focus-visible:ring-offset-brand-800"
+                  scrolled || !isHome
+                    ? "text-gray-700 focus-visible:ring-offset-white"
+                    : "text-white/90 focus-visible:ring-offset-brand-800"
                 }`}
               >
                 Home
@@ -70,14 +113,16 @@ export default function Navbar() {
                 key={link.href}
                 to={link.href}
                 className={`text-sm font-medium tracking-wide transition-colors duration-200 hover:text-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 rounded ${
-                  scrolled || !isHome ? "text-gray-700 focus-visible:ring-offset-white" : "text-white/90 focus-visible:ring-offset-brand-800"
+                  scrolled || !isHome
+                    ? "text-gray-700 focus-visible:ring-offset-white"
+                    : "text-white/90 focus-visible:ring-offset-brand-800"
                 }`}
               >
                 {link.label}
               </Link>
             ))}
             <a
-              href="https://wa.me/94752871414?text=Hello%2C%20I%20would%20like%20to%20place%20an%20order."
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
@@ -111,16 +156,17 @@ export default function Navbar() {
             aria-label="Mobile navigation"
           >
             <div className="px-4 py-6 space-y-4">
-              {isHome && navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="block text-gray-700 font-medium hover:text-brand-500 transition-colors py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {isHome &&
+                navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="block text-gray-700 font-medium hover:text-brand-500 transition-colors py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
+                  >
+                    {link.label}
+                  </a>
+                ))}
               {!isHome && (
                 <Link
                   to="/"
@@ -141,7 +187,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <a
-                href="https://wa.me/94752871414?text=Hello%2C%20I%20would%20like%20to%20place%20an%20order."
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-5 py-3 rounded-full text-sm font-semibold transition-colors w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"

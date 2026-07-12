@@ -6,35 +6,27 @@ import { sectionHeading } from "../lib/motionVariants"
 
 const doubledClients = [...clients, ...clients]
 
-function LogoRow({ items, reverse }: { items: typeof clients; reverse?: boolean }) {
+function LogoRow({ items, className }: { items: typeof clients; className: string }) {
   return (
-    <div className="relative overflow-hidden">
-      <motion.div
-        className="flex gap-6 items-center"
-        animate={{ x: reverse ? ["0%", "50%"] : ["0%", "-50%"] }}
-        transition={{
-          duration: 50,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      >
+    <div className="relative overflow-hidden marquee-wrapper">
+      <div className={`flex gap-6 items-center w-max ${className}`}>
         {items.map((client, index) => (
           <div
             key={`${client.id}-${index}`}
-            className="flex items-center gap-3 shrink-0 px-5 py-3 rounded-xl bg-white border border-gray-100 shadow-sm"
+            className="marquee-card flex items-center gap-3 shrink-0 px-5 py-3 rounded-xl bg-white border border-gray-100 shadow-sm active:scale-95 active:shadow-md transition-transform duration-150"
           >
-            <img src={client.logo} alt={client.name} className="w-16 h-16 object-contain rounded" />
+            <img src={client.logo} alt={client.name} className="w-16 h-16 object-contain rounded" onError={(e) => { e.currentTarget.style.display = "none" }} />
             <span className="font-semibold text-gray-900 text-sm whitespace-nowrap">{client.name}</span>
           </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   )
 }
 
 export default function Clients() {
   return (
-    <section className="py-16 lg:py-20 bg-surface overflow-hidden">
+    <section id="clients" className="py-16 lg:py-20 bg-surface overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={sectionHeading}
@@ -54,8 +46,8 @@ export default function Clients() {
         </motion.div>
 
         <div className="space-y-6 mb-10">
-          <LogoRow items={doubledClients} />
-          <LogoRow items={doubledClients} reverse />
+          <LogoRow items={doubledClients} className="animate-marquee-left" />
+          <LogoRow items={doubledClients} className="animate-marquee-right" />
         </div>
 
         <motion.div

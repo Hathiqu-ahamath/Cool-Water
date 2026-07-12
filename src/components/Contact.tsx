@@ -1,7 +1,8 @@
-import { useRef, useState, type FormEvent } from "react"
+import { useState, useEffect, type FormEvent } from "react"
 import { motion } from "framer-motion"
-import { Phone, MessageCircle, MapPin, Clock, Loader2 } from "lucide-react"
+import { Phone, MessageCircle, MapPin, Clock, Loader2, CheckCircle2 } from "lucide-react"
 import { sectionHeading, fadeInLeft, fadeInRight, iconHover, buttonHover } from "../lib/motionVariants"
+import { WHATSAPP_PHONE } from "../lib/constants"
 
 const contactInfo = [
   {
@@ -16,7 +17,7 @@ const contactInfo = [
     icon: MessageCircle,
     title: "WhatsApp",
     value: "Chat with us on WhatsApp",
-    href: "https://wa.me/94752871414",
+    href: `https://wa.me/${WHATSAPP_PHONE}`,
     color: "text-emerald-600",
     bg: "bg-emerald-50",
   },
@@ -39,8 +40,14 @@ const contactInfo = [
 ]
 
 export default function Contact() {
-  const formRef = useRef<HTMLFormElement>(null)
   const [sending, setSending] = useState(false)
+  const [sent, setSent] = useState(false)
+
+  useEffect(() => {
+    if (!sent) return
+    const timer = setTimeout(() => setSent(false), 4000)
+    return () => clearTimeout(timer)
+  }, [sent])
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -56,7 +63,11 @@ export default function Contact() {
     setSending(true)
     const mailtoLink = `mailto:info@coolwater.lk?subject=Enquiry from ${encodeURIComponent(name)}&body=Name: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0APhone: ${encodeURIComponent(phone)}%0A%0AMessage:%0A${encodeURIComponent(message)}`
     window.location.href = mailtoLink
-    setTimeout(() => setSending(false), 2000)
+    setTimeout(() => {
+      setSending(false)
+      setSent(true)
+      form.reset()
+    }, 1500)
   }
 
   return (
@@ -85,7 +96,7 @@ export default function Contact() {
           </h2>
           <div className="w-16 h-1 bg-brand-500 mx-auto mt-6 rounded-full" />
           <p className="mt-6 text-lg text-gray-600">
-            Ready to order or have questions? We're here to help. Reach out to us anytime.
+            Ready to order or have questions? We&apos;re here to help. Reach out to us anytime.
           </p>
         </motion.div>
 
@@ -97,7 +108,7 @@ export default function Contact() {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            {contactInfo.map((item) => (
+            {contactInfo.map((item) =>
               item.href ? (
                 <motion.a
                   key={item.title}
@@ -134,8 +145,8 @@ export default function Contact() {
                     <div className="font-semibold text-gray-900 text-sm">{item.value}</div>
                   </div>
                 </div>
-              )
-            ))}
+              ),
+            )}
           </motion.div>
 
           <motion.div
@@ -146,73 +157,87 @@ export default function Contact() {
             className="bg-white/90 backdrop-blur-md rounded-2xl p-6 border border-gray-100 shadow-sm"
           >
             <h3 className="text-lg font-bold text-gray-900 mb-4">Send Us a Message</h3>
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-3">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1.5">Your Name <span className="text-red-500">*</span></label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  autoComplete="name"
-                  placeholder="John Doe"
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all duration-200"
-                />
+            {sent ? (
+              <div className="flex flex-col items-center justify-center py-12 gap-4">
+                <CheckCircle2 className="w-12 h-12 text-green-500" />
+                <p className="text-gray-700 font-medium">Your email client should open shortly.</p>
+                <p className="text-gray-500 text-sm text-center">If it doesn&apos;t appear, please check your default mail app settings.</p>
               </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">Email Address <span className="text-red-500">*</span></label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  autoComplete="email"
-                  placeholder="john@example.com"
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all duration-200"
-                />
-              </div>
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1.5">Phone Number</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  autoComplete="tel"
-                  placeholder="+94 77 123 4567"
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all duration-200"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1.5">Message <span className="text-red-500">*</span></label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={3}
-                  autoComplete="off"
-                  placeholder="Tell us how we can help..."
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all duration-200 resize-none"
-                />
-              </div>
-              <motion.button
-                type="submit"
-                disabled={sending}
-                className="w-full bg-brand-500 hover:bg-brand-600 text-white px-6 py-3 rounded-xl text-sm font-semibold shadow-lg shadow-brand-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
-                variants={buttonHover}
-                initial="initial"
-                whileHover="whileHover"
-                whileTap="whileTap"
-              >
-                {sending ? (
-                  <span className="inline-flex items-center gap-2">
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    Sending...
-                  </span>
-                ) : (
-                  "Send Message"
-                )}
-              </motion.button>
-            </form>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-3">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1.5">
+                    Your Name <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    autoComplete="name"
+                    placeholder="John Doe"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all duration-200"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">
+                    Email Address <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    autoComplete="email"
+                    placeholder="john@example.com"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all duration-200"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1.5">Phone Number</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    autoComplete="tel"
+                    placeholder="+94 77 123 4567"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all duration-200"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1.5">
+                    Message <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={3}
+                    autoComplete="off"
+                    placeholder="Tell us how we can help..."
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all duration-200 resize-none"
+                  />
+                </div>
+                <motion.button
+                  type="submit"
+                  disabled={sending}
+                  className="w-full bg-brand-500 hover:bg-brand-600 text-white px-6 py-3 rounded-xl text-sm font-semibold shadow-lg shadow-brand-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                  variants={buttonHover}
+                  initial="initial"
+                  whileHover="whileHover"
+                  whileTap="whileTap"
+                >
+                  {sending ? (
+                    <span className="inline-flex items-center gap-2">
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Opening mail client...
+                    </span>
+                  ) : (
+                    "Send Message"
+                  )}
+                </motion.button>
+              </form>
+            )}
           </motion.div>
         </div>
       </div>

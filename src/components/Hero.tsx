@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Phone, ArrowDown } from "lucide-react"
 import { fadeInUp, buttonHover, floatAmbient, corporateEasing, entranceEasing, scaleFadeIn } from "../lib/motionVariants"
+import { WHATSAPP_PHONE, WHATSAPP_ORDER_MESSAGE } from "../lib/constants"
 
 export default function Hero() {
   const { scrollY } = useScroll()
@@ -15,9 +16,11 @@ export default function Hero() {
       >
         <img
           src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=1920&q=80"
-          alt=""
+          alt="Pure water flowing over smooth river stones"
           className="w-full h-full object-cover"
           loading="eager"
+          width="1920"
+          height="1080"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-brand-900/85 via-brand-800/75 to-brand-700/85" />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-900/40 via-transparent to-transparent" />
@@ -56,25 +59,11 @@ export default function Hero() {
         />
       </motion.div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 overflow-hidden">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 lg:py-20 overflow-hidden">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
           <motion.div variants={fadeInUp} initial="hidden" animate="visible">
-            <motion.div
-              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-xl rounded-full px-4 py-2 mb-4 border border-white/10 shadow-xl"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, ease: entranceEasing, delay: 0.2 }}
-            >
-              <motion.div
-                className="w-2 h-2 rounded-full bg-sky-400"
-                animate={{ opacity: [0.4, 1, 0.4] }}
-                transition={{ duration: 2, repeat: Infinity, ease: corporateEasing }}
-              />
-              <span className="text-white/80 text-sm font-medium tracking-wide">Pure Water. Trusted Quality.</span>
-            </motion.div>
-
             <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-extrabold text-white leading-tight tracking-tight">
-              Pure Drinking Water
+              Cool Water
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-200 to-white">
                 For A Healthier Life
@@ -87,7 +76,7 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, ease: entranceEasing, delay: 0.3 }}
             >
-              Providing hygienic and quality-assured bottled drinking water trusted by families and businesses across Sri Lanka.
+              Quality-assured bottled drinking water trusted across Sri Lanka.
             </motion.p>
 
             <motion.div
@@ -97,7 +86,7 @@ export default function Hero() {
               transition={{ duration: 0.4, ease: entranceEasing, delay: 0.4 }}
             >
               <motion.a
-                href="https://wa.me/94752871414?text=Hello%2C%20I%20would%20like%20to%20place%20an%20order."
+                href={`https://wa.me/${WHATSAPP_PHONE}?text=${WHATSAPP_ORDER_MESSAGE}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-white text-brand-700 hover:bg-gray-100 px-8 py-4 rounded-full text-base font-bold shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-800"
@@ -133,17 +122,17 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, ease: entranceEasing, delay: 0.5 }}
             >
-              <motion.div className="text-center cursor-pointer" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
+              <motion.div className="text-center" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
                 <div className="text-2xl sm:text-3xl font-bold text-white">2010</div>
                 <div className="text-white/50 text-xs sm:text-sm">Founded</div>
               </motion.div>
               <div className="w-px h-10 bg-white/15" />
-              <motion.div className="text-center cursor-pointer" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
+              <motion.div className="text-center" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
                 <div className="text-2xl sm:text-3xl font-bold text-white">19L</div>
                 <div className="text-white/50 text-xs sm:text-sm">Premium Size</div>
               </motion.div>
               <div className="w-px h-10 bg-white/15" />
-              <motion.div className="text-center cursor-pointer" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
+              <motion.div className="text-center" whileHover={{ scale: 1.05, y: -2 }} transition={{ duration: 0.2 }}>
                 <div className="text-2xl sm:text-3xl font-bold text-white">SLS</div>
                 <div className="text-white/50 text-xs sm:text-sm">Certified</div>
               </motion.div>
@@ -171,7 +160,7 @@ export default function Hero() {
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-900/40 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-0 right-0 text-center">
                   <span className="inline-block bg-white/15 backdrop-blur-md px-4 py-2 rounded-full text-white text-sm font-semibold border border-white/10">
-                    Cool Water Premium
+                    Pure Water. Trusted Quality.
                   </span>
                 </div>
               </motion.div>

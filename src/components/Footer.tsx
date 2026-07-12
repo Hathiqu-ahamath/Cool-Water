@@ -1,3 +1,4 @@
+import { Link, useLocation } from "react-router-dom"
 import { motion } from "framer-motion"
 import { Phone, Mail } from "lucide-react"
 import { staggerContainer, staggerItem } from "../lib/motionVariants"
@@ -11,6 +12,9 @@ const quickLinks = [
 ]
 
 export default function Footer() {
+  const { pathname } = useLocation()
+  const isHome = pathname === "/"
+
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -37,12 +41,21 @@ export default function Footer() {
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 rounded"
-                  >
-                    {link.label}
-                  </a>
+                  {isHome ? (
+                    <a
+                      href={link.href}
+                      className="text-gray-400 hover:text-white transition-colors text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 rounded"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      to={`/${link.href}`}
+                      className="text-gray-400 hover:text-white transition-colors text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 rounded"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -52,13 +65,19 @@ export default function Footer() {
             <h4 className="font-semibold text-sm tracking-wider uppercase mb-5">Contact</h4>
             <ul className="space-y-3">
               <li>
-                <a href="tel:+94752871414" className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 rounded">
+                <a
+                  href="tel:+94752871414"
+                  className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 rounded"
+                >
                   <Phone className="w-3.5 h-3.5" />
                   +94 75 287 1414
                 </a>
               </li>
               <li>
-                <a href="mailto:info@coolwater.lk" className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 rounded">
+                <a
+                  href="mailto:info@coolwater.lk"
+                  className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 rounded"
+                >
                   <Mail className="w-3.5 h-3.5" />
                   info@coolwater.lk
                 </a>
@@ -100,9 +119,7 @@ export default function Footer() {
           <p className="text-gray-500 text-sm">
             &copy; {new Date().getFullYear()} Cool Water. All rights reserved.
           </p>
-          <p className="text-gray-500 text-sm">
-            Pure Water. Trusted Quality.
-          </p>
+
         </div>
       </div>
     </footer>
