@@ -46,7 +46,7 @@ function Hero() {
             </motion.p>
 
             <motion.div
-              className="mt-6 flex flex-wrap gap-4"
+              className="mt-6 flex flex-nowrap justify-center gap-3"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: entranceEasing, delay: 0.4 }}
@@ -55,7 +55,7 @@ function Hero() {
                 href={`https://wa.me/${WHATSAPP_PHONE}?text=${WHATSAPP_ORDER_MESSAGE}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white text-brand-700 hover:bg-gray-100 px-8 py-4 rounded-full text-base font-bold shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-800"
+                className="inline-flex items-center gap-2 bg-white text-brand-700 hover:bg-gray-100 px-5 py-2.5 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base font-bold shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-800"
                 variants={buttonHover}
                 initial="initial"
                 whileHover="whileHover"
@@ -66,7 +66,7 @@ function Hero() {
               </motion.a>
               <motion.a
                 href="#about"
-                className="inline-flex items-center gap-2 border-2 border-white/20 text-white hover:bg-white/10 px-8 py-4 rounded-full text-base font-semibold backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-800"
+                className="inline-flex items-center gap-2 border-2 border-white/20 text-white hover:bg-white/10 px-5 py-2.5 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base font-semibold backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-800"
                 variants={buttonHover}
                 initial="initial"
                 whileHover="whileHover"
@@ -78,7 +78,7 @@ function Hero() {
             </motion.div>
 
             <motion.div
-              className="mt-8 flex flex-wrap items-center gap-4 sm:gap-6"
+              className="mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, ease: entranceEasing, delay: 0.5 }}
