@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useRef, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Star, Quote } from "lucide-react"
 import { sectionHeading, staggerContainer, staggerItem } from "../lib/motionVariants"
@@ -54,6 +54,22 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[num
 
 export default function Testimonials() {
   const innerRef = useRef<HTMLDivElement>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const wrapper = wrapperRef.current
+    const inner = innerRef.current
+    if (!wrapper || !inner) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        inner.style.animationPlayState = entry.isIntersecting ? "running" : "paused"
+      },
+      { threshold: 0 },
+    )
+    observer.observe(wrapper)
+    return () => observer.disconnect()
+  }, [])
 
   const handleTouchStart = () => {
     if (innerRef.current) innerRef.current.style.animationPlayState = "paused"
@@ -85,7 +101,7 @@ export default function Testimonials() {
         </motion.div>
 
         <div className="md:hidden">
-          <div className="marquee-wrapper overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+          <div ref={wrapperRef} className="marquee-wrapper overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
             <div ref={innerRef} className="flex gap-6 items-stretch w-max animate-marquee-left">
               {doubledTestimonials.map((testimonial, index) => (
                 <TestimonialCard key={`${testimonial.id}-${index}`} testimonial={testimonial} />
