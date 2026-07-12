@@ -1,3 +1,4 @@
+import { memo } from "react"
 import { motion } from "framer-motion"
 import { ShieldCheck, Truck, Clock, Leaf, Smile, Factory } from "lucide-react"
 import { sectionHeading, staggerContainer, staggerItem, iconHover } from "../lib/motionVariants"
@@ -47,7 +48,7 @@ const features = [
   },
 ]
 
-export default function Features() {
+export default memo(function Features() {
   return (
     <section className="py-16 lg:py-20 bg-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -99,4 +100,4 @@ export default function Features() {
       </div>
     </section>
   )
-}
+})

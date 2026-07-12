@@ -13,7 +13,7 @@ const products = [
     features: ["Reusable bottle", "Dispenser compatible", "Best value"],
     gradient: "from-brand-500 to-brand-700",
     capacity: "19 Liters",
-    image: "/assets/19L.png",
+    image: "/assets/19L.webp",
   },
   {
     id: "5l",
@@ -23,7 +23,7 @@ const products = [
     features: ["Easy to carry", "Fits refrigerators", "Space saving"],
     gradient: "from-sky-400 to-brand-500",
     capacity: "5 Liters",
-    image: "/assets/5L.png",
+    image: "/assets/5L.webp",
   },
   {
     id: "1-5l",
@@ -33,7 +33,7 @@ const products = [
     features: ["Portable", "BPA-free cap", "Single serve"],
     gradient: "from-sky-300 to-sky-500",
     capacity: "1.5 Liters",
-    image: "/assets/1.5L.png",
+    image: "/assets/1.5L.webp",
   },
   {
     id: "1l",
@@ -43,7 +43,7 @@ const products = [
     features: ["Pocket friendly", "Lightweight", "Easy grip"],
     gradient: "from-cyan-300 to-sky-400",
     capacity: "1 Liter",
-    image: "/assets/1L.png",
+    image: "/assets/1L.webp",
   },
 ]
 

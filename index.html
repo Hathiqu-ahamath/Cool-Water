@@ -16,18 +16,20 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://coolwater.lk" />
     <meta property="og:site_name" content="Cool Water" />
-    <meta property="og:image" content="https://coolwater.lk/assets/hero.png" />
+    <meta property="og:image" content="https://coolwater.lk/assets/hero.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Cool Water - Pure Quality Drinking Water" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Cool Water Sri Lanka | Pure Quality Drinking Water" />
     <meta name="twitter:description" content="Hygienic and quality-assured bottled drinking water in Sri Lanka." />
-    <meta name="twitter:image" content="https://coolwater.lk/assets/hero.png" />
+    <meta name="twitter:image" content="https://coolwater.lk/assets/hero.webp" />
     <meta name="theme-color" content="#1e6f9f" />
     <link rel="canonical" href="https://coolwater.lk" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://images.unsplash.com" />
-    <link rel="preconnect" href="https://coolwater.lk" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preload" as="image" href="/assets/hero.webp" type="image/webp" fetchpriority="high" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <title>Cool Water Sri Lanka | Pure Quality Drinking Water</title>
     <script type="application/ld+json">
     {
@@ -35,6 +37,7 @@
       "@type": "Organization",
       "name": "Cool Water",
       "url": "https://coolwater.lk",
+      "logo": "https://coolwater.lk/assets/logo.webp",
       "description": "Hygienic and quality-assured bottled drinking water in Sri Lanka",
       "foundingDate": "2010",
       "contactPoint": {
@@ -54,7 +57,25 @@
       "sameAs": [
         "https://www.facebook.com/profile.php?id=100086012830758",
         "https://www.instagram.com/coolwaterlk/"
-      ]
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "Sri Lanka"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Cool Water Sri Lanka",
+      "url": "https://coolwater.lk",
+      "description": "Hygienic and quality-assured bottled drinking water in Sri Lanka",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://coolwater.lk/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
     }
     </script>
   </head>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, memo } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Phone } from "lucide-react"
@@ -16,7 +16,7 @@ const pageLinks = [
   { href: "/clients", label: "Clients" },
 ]
 
-export default function Navbar() {
+export default memo(function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const { pathname } = useLocation()
@@ -77,7 +77,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center gap-2">
             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center p-1 shadow-lg">
-              <img src="/assets/logo.png" alt="Cool Water Logo" className="h-10 w-auto" />
+              <img src="/assets/logo.webp" alt="Cool Water Logo" className="h-10 w-auto" width="40" height="40" />
             </div>
           </Link>
 
@@ -201,4 +201,4 @@ export default function Navbar() {
       </AnimatePresence>
     </nav>
   )
-}
+})

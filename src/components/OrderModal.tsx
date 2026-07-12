@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react"
+import { useState, useEffect, useCallback, useRef, memo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Send, User, Phone, Mail, MapPin, Package } from "lucide-react"
 import { WHATSAPP_PHONE } from "../lib/constants"
@@ -20,7 +20,7 @@ const initialFormData = {
   selectedPkg: "",
 }
 
-export default function OrderModal({ isOpen, onClose, selectedPackage }: OrderModalProps) {
+export default memo(function OrderModal({ isOpen, onClose, selectedPackage }: OrderModalProps) {
   const [formData, setFormData] = useState({ ...initialFormData, selectedPkg: selectedPackage })
   const closeRef = useRef<HTMLButtonElement>(null)
 
@@ -228,4 +228,4 @@ export default function OrderModal({ isOpen, onClose, selectedPackage }: OrderMo
       )}
     </AnimatePresence>
   )
-}
+})

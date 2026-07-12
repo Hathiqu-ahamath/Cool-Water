@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useRef, memo } from "react"
 import { motion } from "framer-motion"
 import { ArrowUpRight } from "lucide-react"
 import { Link } from "react-router-dom"
@@ -39,7 +39,7 @@ function LogoRow({ items, className }: { items: typeof clients; className: strin
   )
 }
 
-export default function Clients() {
+export default memo(function Clients() {
   return (
     <section id="clients" className="py-16 lg:py-20 bg-surface overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -83,4 +83,4 @@ export default function Clients() {
       </div>
     </section>
   )
-}
+})

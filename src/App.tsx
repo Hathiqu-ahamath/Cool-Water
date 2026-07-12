@@ -1,17 +1,22 @@
-import { useEffect } from "react"
+import { lazy, Suspense, useEffect } from "react"
 import { Routes, Route, useLocation } from "react-router-dom"
 import Navbar from "./components/Navbar"
 import Hero from "./components/Hero"
-import About from "./components/About"
-import Products from "./components/Products"
-import QualitySection from "./components/QualitySection"
-import Features from "./components/Features"
-import Delivery from "./components/Delivery"
-import Testimonials from "./components/Testimonials"
-import Clients from "./components/Clients"
-import Contact from "./components/Contact"
 import Footer from "./components/Footer"
-import ClientsPage from "./pages/ClientsPage"
+
+const About = lazy(() => import("./components/About"))
+const Products = lazy(() => import("./components/Products"))
+const QualitySection = lazy(() => import("./components/QualitySection"))
+const Features = lazy(() => import("./components/Features"))
+const Delivery = lazy(() => import("./components/Delivery"))
+const Testimonials = lazy(() => import("./components/Testimonials"))
+const Clients = lazy(() => import("./components/Clients"))
+const Contact = lazy(() => import("./components/Contact"))
+const ClientsPage = lazy(() => import("./pages/ClientsPage"))
+
+function SectionLoader() {
+  return <div className="py-20" aria-hidden="true" />
+}
 
 function ScrollToHash() {
   const { hash } = useLocation()
@@ -31,14 +36,16 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <About />
-      <Products />
-      <QualitySection />
-      <Features />
-      <Delivery />
-      <Testimonials />
-      <Clients />
-      <Contact />
+      <Suspense fallback={<SectionLoader />}>
+        <About />
+        <Products />
+        <QualitySection />
+        <Features />
+        <Delivery />
+        <Testimonials />
+        <Clients />
+        <Contact />
+      </Suspense>
     </>
   )
 }
@@ -51,7 +58,11 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/clients" element={<ClientsPage />} />
+          <Route path="/clients" element={
+            <Suspense fallback={<SectionLoader />}>
+              <ClientsPage />
+            </Suspense>
+          } />
           <Route path="*" element={
             <div className="min-h-screen flex items-center justify-center">
               <div className="text-center">

@@ -1,3 +1,4 @@
+import { memo } from "react"
 import { motion } from "framer-motion"
 import { Home, Building2, PackageCheck, CalendarCheck } from "lucide-react"
 import { sectionHeading, staggerContainer, staggerItem, iconHover, buttonHover, scaleFadeIn } from "../lib/motionVariants"
@@ -34,7 +35,7 @@ const services = [
   },
 ]
 
-export default function Delivery() {
+export default memo(function Delivery() {
   return (
     <section className="py-16 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -127,4 +128,4 @@ export default function Delivery() {
       </div>
     </section>
   )
-}
+})

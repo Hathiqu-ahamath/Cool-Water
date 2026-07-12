@@ -1,7 +1,7 @@
-import { useState, useEffect, type FormEvent } from "react"
+import { useState, useEffect, memo, type FormEvent } from "react"
 import { motion } from "framer-motion"
 import { Phone, MessageCircle, MapPin, Clock, Loader2, CheckCircle2 } from "lucide-react"
-import { sectionHeading, fadeInLeft, fadeInRight, iconHover, buttonHover } from "../lib/motionVariants"
+import { sectionHeading, fadeInLeft, fadeInRight, buttonHover } from "../lib/motionVariants"
 import { WHATSAPP_PHONE } from "../lib/constants"
 
 const contactInfo = [
@@ -39,7 +39,7 @@ const contactInfo = [
   },
 ]
 
-export default function Contact() {
+function Contact() {
   const [sending, setSending] = useState(false)
   const [sent, setSent] = useState(false)
 
@@ -72,16 +72,8 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-16 lg:py-20 bg-white relative overflow-hidden">
-      <motion.div
-        className="absolute top-0 right-0 w-96 h-96 bg-brand-50 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"
-        animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.7, 0.5] }}
-        transition={{ duration: 8, repeat: Infinity, ease: [0.4, 0, 0.2, 1] }}
-      />
-      <motion.div
-        className="absolute bottom-0 left-0 w-64 h-64 bg-sky-50 rounded-full translate-y-1/3 -translate-x-1/4 blur-3xl"
-        animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.6, 0.3] }}
-        transition={{ duration: 10, repeat: Infinity, ease: [0.4, 0, 0.2, 1] }}
-      />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-50 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl opacity-50" aria-hidden="true" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-50 rounded-full translate-y-1/3 -translate-x-1/4 blur-3xl opacity-30" aria-hidden="true" />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={sectionHeading}
@@ -119,14 +111,12 @@ export default function Contact() {
                   whileHover={{ y: -2, boxShadow: "0 8px 24px rgba(30,111,159,0.1)" }}
                   transition={{ duration: 0.25, ease: [0.2, 0, 0, 1] }}
                 >
-                  <motion.div
+                  <div
                     className={`${item.bg} ${item.color} w-10 h-10 rounded-xl flex items-center justify-center`}
                     aria-hidden="true"
-                    variants={iconHover}
-                    whileHover="whileHover"
                   >
                     <item.icon className="w-5 h-5" />
-                  </motion.div>
+                  </div>
                   <div>
                     <div className="text-xs text-gray-500">{item.title}</div>
                     <div className="font-semibold text-gray-900 text-sm">{item.value}</div>
@@ -137,7 +127,7 @@ export default function Contact() {
                   key={item.title}
                   className="flex items-center gap-4 p-4 rounded-xl border border-gray-100"
                 >
-                  <div className={`${item.bg} ${item.color} w-10 h-10 rounded-xl flex items-center justify-center`}>
+                  <div className={`${item.bg} ${item.color} w-10 h-10 rounded-xl flex items-center justify-center`} aria-hidden="true">
                     <item.icon className="w-5 h-5" />
                   </div>
                   <div>
@@ -167,7 +157,7 @@ export default function Contact() {
               <form onSubmit={handleSubmit} className="space-y-3">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1.5">
-                    Your Name <span className="text-red-500">*</span>
+                    Your Name <span className="text-red-500" aria-hidden="true">*</span>
                   </label>
                   <input
                     type="text"
@@ -181,7 +171,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">
-                    Email Address <span className="text-red-500">*</span>
+                    Email Address <span className="text-red-500" aria-hidden="true">*</span>
                   </label>
                   <input
                     type="email"
@@ -206,7 +196,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1.5">
-                    Message <span className="text-red-500">*</span>
+                    Message <span className="text-red-500" aria-hidden="true">*</span>
                   </label>
                   <textarea
                     id="message"
@@ -244,3 +234,5 @@ export default function Contact() {
     </section>
   )
 }
+
+export default memo(Contact)

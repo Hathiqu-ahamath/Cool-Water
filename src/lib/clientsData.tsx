@@ -14,7 +14,7 @@ export const clients: Client[] = [
     industry: "Restaurant",
     description: "Popular restaurant chain providing premium bottled water for their customers.",
     bgColor: "from-amber-500 to-orange-600",
-    logo: "/clients/AppleBees.png",
+    logo: "/clients/AppleBees.webp",
   },
   {
     id: "burger-king",
@@ -22,7 +22,7 @@ export const clients: Client[] = [
     industry: "Fast Food",
     description: "Leading fast food chain serving millions with quality water across their outlets.",
     bgColor: "from-red-500 to-orange-600",
-    logo: "/clients/Buger king.png",
+    logo: "/clients/Buger king.webp",
   },
   {
     id: "efc",
@@ -30,7 +30,7 @@ export const clients: Client[] = [
     industry: "Food & Beverage",
     description: "Established food and beverage company committed to quality and customer satisfaction.",
     bgColor: "from-emerald-500 to-teal-600",
-    logo: "/clients/EFC.png",
+    logo: "/clients/EFC.webp",
   },
   {
     id: "fc",
@@ -38,7 +38,7 @@ export const clients: Client[] = [
     industry: "Food & Beverage",
     description: "Trusted partner in the food industry, ensuring quality hydration for their operations.",
     bgColor: "from-blue-600 to-indigo-700",
-    logo: "/clients/FC.png",
+    logo: "/clients/FC.webp",
   },
   {
     id: "hnb",
@@ -46,7 +46,7 @@ export const clients: Client[] = [
     industry: "Banking",
     description: "Leading financial institution providing premium water for staff and customers.",
     bgColor: "from-purple-500 to-violet-600",
-    logo: "/clients/HNB.png",
+    logo: "/clients/HNB.webp",
   },
   {
     id: "mac",
@@ -54,7 +54,7 @@ export const clients: Client[] = [
     industry: "Retail",
     description: "Trusted retail brand committed to employee wellness with premium hydration solutions.",
     bgColor: "from-pink-500 to-rose-600",
-    logo: "/clients/MAC.png",
+    logo: "/clients/MAC.webp",
   },
   {
     id: "nsb",
@@ -62,7 +62,7 @@ export const clients: Client[] = [
     industry: "Banking & Finance",
     description: "Leading financial institution providing premium water for staff and customers.",
     bgColor: "from-sky-500 to-cyan-600",
-    logo: "/clients/NSB.png",
+    logo: "/clients/NSB.webp",
   },
   {
     id: "red-chilli",
@@ -70,7 +70,7 @@ export const clients: Client[] = [
     industry: "Restaurant",
     description: "Popular restaurant chain serving authentic cuisine with quality bottled water.",
     bgColor: "from-red-600 to-red-700",
-    logo: "/clients/Red Chilli.png",
+    logo: "/clients/Red Chilli.webp",
   },
   {
     id: "sea",
@@ -78,7 +78,7 @@ export const clients: Client[] = [
     industry: "Hospitality",
     description: "Premium hospitality provider ensuring guests enjoy the finest drinking water experience.",
     bgColor: "from-blue-500 to-blue-700",
-    logo: "/clients/SEA.png",
+    logo: "/clients/SEA.webp",
   },
   {
     id: "vayel-vadi",
@@ -86,6 +86,6 @@ export const clients: Client[] = [
     industry: "Food & Beverage",
     description: "Trusted food establishment committed to quality ingredients and premium hydration.",
     bgColor: "from-amber-600 to-yellow-600",
-    logo: "/clients/VAyel Vadi.png",
+    logo: "/clients/VAyel Vadi.webp",
   },
 ]

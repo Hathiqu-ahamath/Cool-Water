@@ -1,4 +1,5 @@
-import { motion, useScroll, useTransform } from "framer-motion"
+import { memo } from "react"
+import { motion } from "framer-motion"
 import { Shield, Heart, TrendingUp } from "lucide-react"
 import { sectionHeading, staggerContainer, staggerItem, iconHover } from "../lib/motionVariants"
 
@@ -23,26 +24,9 @@ const milestones = [
   },
 ]
 
-export default function About() {
-  const { scrollY } = useScroll()
-  const imgY = useTransform(scrollY, [0, 600], [0, -80])
-
+function About() {
   return (
     <section id="about" className="py-16 lg:py-20 bg-white relative overflow-hidden">
-      <motion.div
-        className="absolute right-0 top-0 w-1/3 h-full pointer-events-none"
-        style={{ y: imgY, opacity: 0.15 }}
-      >
-        <img
-          src="https://coolwater.lk/wp-content/uploads/2022/12/profile_1.jpg"
-          alt="Cool Water production facility"
-          className="w-full h-full object-cover"
-          loading="lazy"
-          onError={(e) => { e.currentTarget.style.display = "none" }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-l from-white via-white to-transparent" />
-      </motion.div>
-
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={sectionHeading}
@@ -95,7 +79,7 @@ export default function About() {
                 <p className="text-gray-600 leading-relaxed">{item.description}</p>
               </motion.div>
               {index < milestones.length - 1 && (
-                <div className="hidden md:block absolute top-1/2 -right-6 w-12 h-px bg-gray-200" />
+                <div className="hidden md:block absolute top-1/2 -right-6 w-12 h-px bg-gray-200" aria-hidden="true" />
               )}
             </motion.div>
           ))}
@@ -104,3 +88,5 @@ export default function About() {
     </section>
   )
 }
+
+export default memo(About)

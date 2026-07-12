@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useRef, memo } from "react"
 import { motion } from "framer-motion"
 import { Star, Quote } from "lucide-react"
 import { sectionHeading, staggerContainer, staggerItem } from "../lib/motionVariants"
@@ -52,7 +52,7 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[num
   )
 }
 
-export default function Testimonials() {
+export default memo(function Testimonials() {
   const innerRef = useRef<HTMLDivElement>(null)
 
   const handleTouchStart = () => {
@@ -131,4 +131,4 @@ export default function Testimonials() {
       </div>
     </section>
   )
-}
+})

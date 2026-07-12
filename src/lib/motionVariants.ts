@@ -77,17 +77,6 @@ export const iconHover = {
   },
 }
 
-export const floatAmbient = {
-  animate: {
-    y: [0, -10, 0],
-    transition: {
-      duration: 4,
-      repeat: Infinity,
-      ease: entranceEasing,
-    },
-  },
-}
-
 export const scaleFadeIn: Variants = {
   hidden: { opacity: 0, scale: 0.85, filter: "blur(4px)" },
   visible: {

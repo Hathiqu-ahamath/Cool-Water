@@ -1,3 +1,4 @@
+import { memo } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { motion } from "framer-motion"
 import { Phone, Mail } from "lucide-react"
@@ -11,7 +12,7 @@ const quickLinks = [
   { href: "#contact", label: "Contact" },
 ]
 
-export default function Footer() {
+export default memo(function Footer() {
   const { pathname } = useLocation()
   const isHome = pathname === "/"
 
@@ -28,7 +29,7 @@ export default function Footer() {
           <motion.div variants={staggerItem}>
             <div className="flex items-center gap-2 mb-4">
               <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center p-1">
-                <img src="/assets/logo.png" alt="Cool Water Logo" className="h-10 w-auto" />
+                <img src="/assets/logo.webp" alt="Cool Water Logo" className="h-10 w-auto" loading="lazy" width="40" height="40" />
               </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
@@ -124,4 +125,4 @@ export default function Footer() {
       </div>
     </footer>
   )
-}
+})

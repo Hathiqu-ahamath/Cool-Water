@@ -1,3 +1,4 @@
+import { memo } from "react"
 import { motion } from "framer-motion"
 import { ShieldCheck, Award, Microscope, Factory } from "lucide-react"
 import { sectionHeading, staggerContainer, staggerItem, iconHover, scaleFadeIn } from "../lib/motionVariants"
@@ -33,7 +34,7 @@ const qualityItems = [
   },
 ]
 
-export default function QualitySection() {
+export default memo(function QualitySection() {
   return (
     <section id="quality" className="py-16 lg:py-20 bg-white relative overflow-hidden">
       <motion.div
@@ -145,4 +146,4 @@ export default function QualitySection() {
       </div>
     </section>
   )
-}
+})

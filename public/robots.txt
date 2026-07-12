@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /assets/
-Disallow: /clients/
 
 Sitemap: https://coolwater.lk/sitemap.xml
